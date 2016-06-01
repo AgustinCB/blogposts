@@ -3,13 +3,10 @@
   "main": "bot.js",
   "scripts": {
     "build": "babel src -d lib",
-    "test": "standard src/*.js"
+    "test": "standard --verbose src/*.js"
   },
   "dependencies": {
-    "express": "^4.0.0",
-    "body-parser": "^1.0.1",
-    "request": "^2.69.0",
-    "promise": "^7.1.1"
+    "node-telegram-bot-api": "^0.21.1"
   },
   "devDependencies": {
     "babel-cli": "^6.6.5",
