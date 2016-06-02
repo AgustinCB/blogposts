@@ -88,6 +88,7 @@ class MessageManager {
 
 Hangman.init(() => {
   let messageManager = new MessageManager()
+  let hangman
 
   // Matches /start
   bot.onText(/\/start/, function (msg, match) {
@@ -120,10 +121,143 @@ The first onText, will match any command starting with "/start". The second one,
 
 ### The start command
 
+Now, let's fill the start command.
+
+```javascript
+// Matches /start
+bot.onText(/\/start/, function (msg, match) {
+  messageManager.process(msg)
+
+  hangman = new Hangman()
+  let chatId = msg.chat.id
+  bot.sendMessage(chatId, hangman.statusScreen())
+
+  console.log('start', msg)
+})
+```
+
+Pretty easy to understand. We create a new hangman game, then we get the chat id from the message and send the status screen to the user.
+
+### The guess command
+
+Let's go to fill the guess command.
+
+```javascript
+// Matches /guess [try]
+bot.onText(/\/guess ([a-zA-Z]+)/, function (msg, match) {
+  messageManager.process(msg)
+
+  let guess = match[1]
+  hangman.guess(guess)
+  let chatId = msg.chat.id
+  bot.sendMessage(chatId, hangman.statusScreen())
+
+  console.log('guess', guess, msg)
+})
+```
+
+Again, self explanatory code. We pass our guess to hangman and send the status screen to the user.
+
+### The restart command
+
+And finally, let's write the restart command.
+
+```javascript
+// Matches /restart
+bot.onText(/\/restart/, function (msg, match) {
+  messageManager.process(msg)
+
+  hangman.start(0)
+  let chatId = msg.chat.id
+  bot.sendMessage(chatId, hangman.statusScreen())
+
+  console.log('restart', msg)
+})
+```
+
+I don't even think I have to explain that at this point!
+
+### Handling multiple games at once.
+
+As you may notice already, this will work very nicely if and only if our have one connection per game. In the case two different users at the same tries to play, they would be receiving the results of the same game and trying at the same time to resolve that game with very confusing results. 
+
+So we have now to add some kind of way to handle that case. Let's look at how the code would look!
+
+```javascript
+Hangman.init(() => {
+  let messageManager = new MessageManager()
+  let hangmanGames = new Map()
+
+  // Matches /start
+  bot.onText(/\/start/, function (msg, match) {
+    messageManager.process(msg)
+
+    let hangman = new Hangman()
+    let chatId = msg.chat.id
+    hangmanGames.set(chatId, hangman)
+    bot.sendMessage(chatId, hangman.statusScreen())
+
+    console.log('start', msg)
+  })
+
+  // Matches /guess [try]
+  bot.onText(/\/guess ([a-zA-Z]+)/, function (msg, match) {
+    messageManager.process(msg)
+
+    let guess = match[1]
+    let chatId = msg.chat.id
+    let hangman = hangmanGames.get(chatId)
+
+    if (!hangman) {
+      return bot.sendMessage(chatId, "You have to start a game to play! Please, use /start command.")
+    }
+
+    hangman.guess(guess)
+    bot.sendMessage(chatId, hangman.statusScreen())
+
+    console.log('guess', guess, msg)
+  })
+
+  // Matches /restart
+  bot.onText(/\/restart/, function (msg, match) {
+    messageManager.process(msg)
+
+    let chatId = msg.chat.id
+    let hangman = hangmanGames.get(chatId)
+
+    if (!hangman) {
+      return bot.sendMessage(chatId, "You have to start a game to play! Please, use /start command.")
+    }
+
+    hangman.start(0)
+    bot.sendMessage(chatId, hangman.statusScreen())
+
+    console.log('restart', msg)
+  })
+
+  bot.onText(/.*/, function (msg) {
+    if (messageManager.has(msg.message_id)) return
+    console.log('unrecognized command', msg)
+  })
+})
+```
+
+As you can see, we created a Map object in which we store all the chats by chat id. We also handle the case of people trying to play before starting to play.
+
+## So... In resume...
+
+So, in resume, Telegram rules, you should use it and drop WhatsApp right now and writing bots for the platform is actually stupidly easy. 
+
+In some weeks, I promise an article explaining how to write a program to defeat our Telegram bot using very simple statistics.
+
+Feel free to share with Telegram bots and check the [Code used in the article] in github to see the full example!
+
+P.D.: You also play with the bot by writing to @TocTocHangmanBot!
+
 ## Code links
 
 [Telegram Bot API]: https://github.com/yagop/node-telegram-bot-api
-[Code used in the article]: https://github.com/yagop/node-telegram-bot-api
+[Code used in the article]: https://github.com/AgustinCB/toctoctech/tree/master/telegram
 
 ## References
 

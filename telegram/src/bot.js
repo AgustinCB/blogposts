@@ -26,27 +26,57 @@ class MessageManager {
 
 Hangman.init(() => {
   let messageManager = new MessageManager()
+  let hangmanGames = new Map()
 
   // Matches /start
   bot.onText(/\/start/, function (msg, match) {
     messageManager.process(msg)
+
+    let hangman = new Hangman()
+    let chatId = msg.chat.id
+    hangmanGames.set(chatId, hangman)
+    bot.sendMessage(chatId, hangman.statusScreen())
+
     console.log('start', msg)
   })
 
   // Matches /guess [try]
   bot.onText(/\/guess ([a-zA-Z]+)/, function (msg, match) {
     messageManager.process(msg)
-    console.log('guess', match[1], msg)
+
+    let guess = match[1]
+    let chatId = msg.chat.id
+    let hangman = hangmanGames.get(chatId)
+
+    if (!hangman) {
+      return bot.sendMessage(chatId, "You have to start a game to play! Please, use /start command.")
+    }
+
+    hangman.guess(guess)
+    bot.sendMessage(chatId, hangman.statusScreen())
+
+    console.log('guess', guess, msg)
   })
 
   // Matches /restart
   bot.onText(/\/restart/, function (msg, match) {
     messageManager.process(msg)
+
+    let chatId = msg.chat.id
+    let hangman = hangmanGames.get(chatId)
+
+    if (!hangman) {
+      return bot.sendMessage(chatId, "You have to start a game to play! Please, use /start command.")
+    }
+
+    hangman.start(0)
+    bot.sendMessage(chatId, hangman.statusScreen())
+
     console.log('restart', msg)
   })
 
   bot.onText(/.*/, function (msg) {
     if (messageManager.has(msg.message_id)) return
-    console.log('default', msg)
+    console.log('unrecognized command', msg)
   })
 })
