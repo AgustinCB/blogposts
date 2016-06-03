@@ -81,7 +81,7 @@ class MessageManager {
     return this.processed_messages.get(id)
   }
 
-  isMessage (id) {
+  isProcessed (id) {
     return this.processed_messages.has(id)
   }
 }
@@ -236,7 +236,7 @@ Hangman.init(() => {
   })
 
   bot.onText(/.*/, function (msg) {
-    if (messageManager.has(msg.message_id)) return
+    if (messageManager.isProcessed(msg.message_id)) return
     console.log('unrecognized command', msg)
   })
 })

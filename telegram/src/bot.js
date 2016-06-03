@@ -7,7 +7,7 @@ import TelegramBot from 'node-telegram-bot-api'
 let bot = new TelegramBot(config.TOKEN, { polling: true })
 
 class MessageManager {
-  construct () {
+  constructor () {
     this.processed_messages = new Map()
   }
 
@@ -19,7 +19,7 @@ class MessageManager {
     return this.processed_messages.get(id)
   }
 
-  isMessage (id) {
+  isProcessed (id) {
     return this.processed_messages.has(id)
   }
 }
@@ -32,7 +32,7 @@ Hangman.init(() => {
   bot.onText(/\/start/, function (msg, match) {
     messageManager.process(msg)
 
-    let hangman = new Hangman()
+    let hangman = new Hangman.Hangman()
     let chatId = msg.chat.id
     hangmanGames.set(chatId, hangman)
     bot.sendMessage(chatId, hangman.statusScreen())
@@ -76,7 +76,7 @@ Hangman.init(() => {
   })
 
   bot.onText(/.*/, function (msg) {
-    if (messageManager.has(msg.message_id)) return
+    if (messageManager.isProcessed(msg.message_id)) return
     console.log('unrecognized command', msg)
   })
 })

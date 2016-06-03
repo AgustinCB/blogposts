@@ -14,13 +14,13 @@ const Status = utils.Enum({
 })
 
 const hangman =
-`    ----    
-    |  |    
-    0  |    
+` ------    
+    |    |    
+    0    |    
    /|\\ |    
-   / \\ |    
-       |    
-      / \\   `.split('\n')
+   / \\  |    
+          |    
+         /  \\   `.split('\n').map((line) => line.split(""))
 const hangmanindexes = [
   [ 2, 4 ],
   [ 3, 4 ],
@@ -38,7 +38,7 @@ export function init (onsuccess, onerror) {
     }
 
     data.toString().split('\n').forEach((word) => {
-      word = word.toLowerCase()
+      word = word.toLowerCase().trim()
 
       if (!words.has(word.length)) {
         words.set(word.length, [])
@@ -51,7 +51,7 @@ export function init (onsuccess, onerror) {
   })
 }
 
-export default class Hangman {
+export class Hangman {
   constructor () {
     this.start(0)
   }
@@ -60,14 +60,14 @@ export default class Hangman {
     let wordlength = level + 4
 
     if (!words.has(wordlength)) {
-      this.state = Status['WON']
+      this.status = Status['WON']
       return
     }
 
     this.level = level
-    this.state = Status['PLAYING']
+    this.status = Status['PLAYING']
     this.message = ''
-    this.word = utils.sample(words[wordlength])
+    this.word = utils.sample(words.get(wordlength))
     this.guesses = []
     this.successes = Array(wordlength).fill('_')
   }
@@ -76,9 +76,9 @@ export default class Hangman {
     let isletter = letterorword.length === 1
     let success = false
 
-    letterorword.forEach((letter, index) => {
+    letterorword.split("").forEach((letter, index) => {
       if (isletter) {
-        this.word.forEach((wordletter, wordindex) => {
+        this.word.split("").forEach((wordletter, wordindex) => {
           if (wordletter === letter) {
             this.successes[wordindex] = letter
             success = true
@@ -92,11 +92,13 @@ export default class Hangman {
       }
     })
 
+    this.guesses.push(letterorword)
+
     this.updateStatus(success)
   }
 
   updateStatus (success) {
-    if (this.wrongs === MAX_TRIES) {
+    if (this.wrongs >= MAX_TRIES) {
       this.status = Status['LOST']
       return
     }
@@ -112,7 +114,7 @@ export default class Hangman {
 
   statusScreen () {
     let statusscreen
-    switch (this.state) {
+    switch (this.status) {
       case Status['PLAYING']:
         statusscreen = this.gameScreen()
         break
@@ -131,12 +133,12 @@ export default class Hangman {
       return `Level ${this.level + 1}`
     }
     let drawHangman = () => {
-      let drawing = hangman.slice()
+      let drawing = utils.clone(hangman)
       for (let i = 0; i < MAX_TRIES - this.wrongs; i++) {
         let index = hangmanindexes[i]
-        drawing[index[0]][index[1]] = ' '
+        drawing[index[0]][index[1]] = '  '
       }
-      return drawing.join('\n')
+      return drawing.map((line) => line.join("")).join('\n')
     }
     let drawWord = () => {
       return this.successes.join(' ')
@@ -146,7 +148,7 @@ export default class Hangman {
     ${drawLevel()}
     ${drawHangman()}
 
-    ${drawWord}
+    ${drawWord()}
     `
   }
 
