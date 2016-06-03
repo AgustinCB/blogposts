@@ -256,11 +256,15 @@ P.D.: You also play with the bot by writing to @TocTocHangmanBot!
 
 ## Code links
 
-[Telegram Bot API]: https://github.com/yagop/node-telegram-bot-api
-[Code used in the article]: https://github.com/AgustinCB/toctoctech/tree/master/telegram
+[Telegram Bot API]
+[Code used in the article]
 
 ## References
 
+[Telegram Bot API Reference](https://core.telegram.org/bots/api)
+
+[Telegram Bot API]: https://github.com/yagop/node-telegram-bot-api
+[Code used in the article]: https://github.com/AgustinCB/toctoctech/tree/master/telegram
 [1]: https://en.wikipedia.org/wiki/Eating_your_own_dog_food
 [2]: https://core.telegram.org/bots#global-commands
 [3]: https://core.telegram.org/bots/api#setwebhook
