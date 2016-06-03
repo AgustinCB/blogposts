@@ -49,7 +49,7 @@ Hangman.init(() => {
     let hangman = hangmanGames.get(chatId)
 
     if (!hangman) {
-      return bot.sendMessage(chatId, "You have to start a game to play! Please, use /start command.")
+      return bot.sendMessage(chatId, 'You have to start a game to play! Please, use /start command.')
     }
 
     hangman.guess(guess)
@@ -66,7 +66,7 @@ Hangman.init(() => {
     let hangman = hangmanGames.get(chatId)
 
     if (!hangman) {
-      return bot.sendMessage(chatId, "You have to start a game to play! Please, use /start command.")
+      return bot.sendMessage(chatId, 'You have to start a game to play! Please, use /start command.')
     }
 
     hangman.start(0)

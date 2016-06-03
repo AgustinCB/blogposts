@@ -20,7 +20,7 @@ const hangman =
    /|\\ |    
    / \\  |    
           |    
-         /  \\   `.split('\n').map((line) => line.split(""))
+         /  \\   `.split('\n').map((line) => line.split(''))
 const hangmanindexes = [
   [ 2, 4 ],
   [ 3, 4 ],
@@ -76,9 +76,9 @@ export class Hangman {
     let isletter = letterorword.length === 1
     let success = false
 
-    letterorword.split("").forEach((letter, index) => {
+    letterorword.split('').forEach((letter, index) => {
       if (isletter) {
-        this.word.split("").forEach((wordletter, wordindex) => {
+        this.word.split('').forEach((wordletter, wordindex) => {
           if (wordletter === letter) {
             this.successes[wordindex] = letter
             success = true
@@ -138,7 +138,7 @@ export class Hangman {
         let index = hangmanindexes[i]
         drawing[index[0]][index[1]] = '  '
       }
-      return drawing.map((line) => line.join("")).join('\n')
+      return drawing.map((line) => line.join('')).join('\n')
     }
     let drawWord = () => {
       return this.successes.join(' ')
