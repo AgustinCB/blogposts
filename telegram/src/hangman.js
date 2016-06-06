@@ -53,12 +53,12 @@ export function init (onsuccess, onerror) {
 
 export class Hangman {
   constructor () {
-    this.start(0)
     this.startlength = Math.min(words.keys())
+    this.start(0)
   }
 
   start (level) {
-    let wordlength = level + startlength
+    let wordlength = level + this.startlength
 
 
     if (!words.has(wordlength)) {
