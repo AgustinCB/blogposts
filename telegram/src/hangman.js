@@ -14,20 +14,20 @@ const Status = utils.Enum({
 })
 
 const hangman =
-` ------    
-    |     |    
-    0     |    
-  /|\\   |    
-   / \\   |    
-           |    
-          / \\   `.split('\n').map((line) => line.split(''))
+`____
+  |       |    
+  |       0    
+  |      /|\\  
+  |      / \\  
+  |            
+  |            `.split('\n').map((line) => line.split(''))
 const hangmanindexes = [
-  [ 2, 4 ],
-  [ 3, 3 ],
-  [ 3, 2 ],
-  [ 3, 4 ],
-  [ 4, 3 ],
-  [ 4, 5 ]
+  [ 2, 10 ],
+  [ 3, 9 ],
+  [ 3, 11 ],
+  [ 3, 10 ],
+  [ 4, 9 ],
+  [ 4, 11 ]
 ].reverse()
 
 export function init (onsuccess, onerror) {
