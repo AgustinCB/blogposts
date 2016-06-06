@@ -15,17 +15,17 @@ const Status = utils.Enum({
 
 const hangman =
 ` ------    
-    |    |    
-    0    |    
-   /|\\ |    
-   / \\  |    
-          |    
-         /  \\   `.split('\n').map((line) => line.split(''))
+    |     |    
+    0     |    
+  /|\\   |    
+   / \\   |    
+           |    
+          / \\   `.split('\n').map((line) => line.split(''))
 const hangmanindexes = [
   [ 2, 4 ],
-  [ 3, 4 ],
   [ 3, 3 ],
-  [ 3, 5 ],
+  [ 3, 2 ],
+  [ 3, 4 ],
   [ 4, 3 ],
   [ 4, 5 ]
 ].reverse()
