@@ -60,7 +60,6 @@ export class Hangman {
   start (level) {
     let wordlength = level + this.startlength
 
-
     if (!words.has(wordlength)) {
       this.status = Status['WON']
       return
