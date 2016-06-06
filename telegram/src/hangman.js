@@ -13,6 +13,12 @@ const Status = utils.Enum({
   'LOST': 2
 })
 
+const GuessSuccess = utils.Enum({
+    'WRONG': 0,
+    'SUCCESS': 1,
+    'REPEATED': 2
+})
+
 const MESSAGE_TEXT =
 {
     0: 'Bad luck, try again!',
@@ -83,26 +89,26 @@ export class Hangman {
 
   guess (letterorword) {
     let isletter = letterorword.length === 1
-    let success = 0
+    let success = GuessSuccess['WRONG']
 
     letterorword.split('').forEach((letter, index) => {
       if (isletter) {
         this.word.split('').forEach((wordletter, wordindex) => {
           if (wordletter === letter) {
             this.successes[wordindex] = letter
-            success = 1
+            success = GuessSuccess['SUCCESS']
           }
         })
       } else {
         if (this.word[index] && this.word[index] === letter) {
           this.successes[index] = letter
-          success = 1
+          success = GuessSuccess['SUCCESS']
         }
       }
     })
 
     if (this.existInArray(letterorword)) {
-      success = 2;
+      success = GuessSuccess['REPEATED'];
     } else {
       this.guesses.push(letterorword)
     }
