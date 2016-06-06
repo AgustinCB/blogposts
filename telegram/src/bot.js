@@ -52,7 +52,7 @@ Hangman.init(() => {
       return bot.sendMessage(chatId, 'You have to start a game to play! Please, use /start command.')
     }
 
-    hangman.guess(guess)
+    hangman.guess(guess.toLowerCase())
     bot.sendMessage(chatId, hangman.statusScreen())
 
     console.log('guess', guess, msg)
