@@ -13,6 +13,13 @@ const Status = utils.Enum({
   'LOST': 2
 })
 
+const MESSAGE_TEXT =
+{
+    0: 'Bad luck, try again!',
+    1: 'Good guess!',
+    2: "Don't be stupid and choose another letter"
+}
+
 const hangman =
 `____
   |       |    
@@ -76,27 +83,35 @@ export class Hangman {
 
   guess (letterorword) {
     let isletter = letterorword.length === 1
-    let success = false
+    let success = 0
 
     letterorword.split('').forEach((letter, index) => {
       if (isletter) {
         this.word.split('').forEach((wordletter, wordindex) => {
           if (wordletter === letter) {
             this.successes[wordindex] = letter
-            success = true
+            success = 1
           }
         })
       } else {
         if (this.word[index] && this.word[index] === letter) {
           this.successes[index] = letter
-          success = true
+          success = 1
         }
       }
     })
 
-    this.guesses.push(letterorword)
+    if (this.existInArray(letterorword)) {
+      success = 2;
+    } else {
+      this.guesses.push(letterorword)
+    }
 
     this.updateStatus(success)
+  }
+
+  existInArray(letterorword) {
+      return (this.guesses.indexOf(letterorword) > 0)
   }
 
   updateStatus (success) {
@@ -111,7 +126,7 @@ export class Hangman {
       return
     }
 
-    this.message = success ? 'Good guess!' : 'Bad luck, try again!'
+      this.message = MESSAGE_TEXT[success]
   }
 
   statusScreen () {
