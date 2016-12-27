@@ -1,8 +1,4 @@
-# Introduction
-
-## Motivations
-
-So this is my first blog post in /var/log. 
+So this is my first blog post in **cat /var/log/me**.
 
 I should confess, this is something I wanted to do for a long time. I always fantasized about writing a blog with my programming experiences, but there was some things pushing me back:
 
@@ -13,13 +9,13 @@ The first problem is easy to solve. And I'm working on it.
 
 The second one is more painful. And difficult to approach. There just isn't anything that fits my needs (I far as know).
 
-## The light
+### The light
 
 And then I read in Quora an answer of [Vladimir Zorov](https://www.quora.com/profile/Vladislav-Zorov). I can't find the exact answer, but he was basically saying that he started creating a blog from scratch and posted there a set of series about the experience of writing the blog. He explains it very well [here](http://vladizorov.info/). 
 
 And I thought: 'This is marvellous!' I can write the exact type of blog system that want to use and at the same time I'd have the content for my first posts. So I decided to copy Vladimir's idea (a guy I strongly recommend you follow in quora, by the way).
 
-## The objective
+### The objective
 
 So, the first thing I decided to do was define what I'd be doing. I came with some principles:
 
@@ -27,14 +23,13 @@ So, the first thing I decided to do was define what I'd be doing. I came with so
 2. It should be extensible. Despite the fact that I don't want to overcomplicate things, I'd also want to be able to add new features. But I want them as isolated pieces of code independent from the project, plugable and easy to add and remove.
 3. It should work from the terminal. I really don't want to fight with an online editor. I prefer to use my old vim, my old bash, my old pandoc. And I don't want to learn new things. I'm lazy.
 
-## The result
+### The result
 
 And that's how [sbm](https://github.com/AgustinCB/sbm). It's a simple blog written in nodejs, with just two things: A server, which exposes a REST API to create, updated, delete and view posts, comments and users and a simple cli to do it.
 
 And so, I can use it like that:
 
-```bash
-$ sbm start &
+```$ sbm start &
 $ sbm login --url localhost:3000 --username admin --password admin
 $ sbm read posts
 $ sbm create post --title 'My new post' --content 'The content of my post'
