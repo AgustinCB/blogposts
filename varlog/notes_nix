@@ -15,12 +15,22 @@
 				- cp ./libperl.a /tools/lib/perl5/5.24.0/[target]/CORE
 			- To install the modules:
 				- First, DBI (https://cpan.metacpan.org/authors/id/T/TI/TIMB/DBI-1.636.tar.gz)
-					- /tools/bin/perl Makefile.PL
+					- LINKTYPE=static PREFIX=/tools /tools/bin/perl Makefile.PL
 					- make static
+					- make Makefile.aperl
+					- sed -i 's/-L\/usr\/local\/lib/-L\/tools\/lib/g' Makefile.aperl
+					- sed -i 's/-L\/usr\/local\/include/-L\/tools\/include/g' Makefile.aperl
+					- make -f Makefile.aperl perl
+					- make -f Makefile.aperl inst_perl MAP_TARGET=perl
 					- make install
 				- Now, DBD (https://cpan.metacpan.org/authors/id/I/IS/ISHIGAKI/DBD-SQLite-1.54.tar.gz)
-					- LINKTYPE=static /tools/bin/perl Makefile.PL
+					- LINKTYPE=static PREFIX=/tools /tools/bin/perl Makefile.PL
 					- make static
+					- make Makefile.aperl
+					- sed -i 's/-L\/usr\/local\/lib/-L\/tools\/lib -ldl/g' Makefile.aperl
+					- sed -i 's/-I\/usr\/local\/include/-I\/tools\/include/g' Makefile.aperl
+					- make -f Makefile.aperl perl
+					- make -f Makefile.aperl inst_perl MAP_TARGET=perl
 					- make install
 				- And WWW::Curl
 					- /tools/bin/perl Makefile.PL
@@ -38,4 +48,9 @@
 	- make install
 3.- Install nix (https://github.com/NixOS/nix/archive/1.11.4.tar.gz) ?
 	- autoreconf
-	- 
+	- ./configure --prefix=/tools
+	- sed -i 's/^  misc\/upstart\/local.mk .*$/  misc\/upstart\/local.mk/g' Makefile
+	- sed -i 's/^  misc\/emacs\/local.mk .*$//g' Makefile
+	- sed -i 's/^  doc\/manual\/local.mk .*$//g' Makefile
+	- sed -i 's/^  tests\/local.mk .*$//g' Makefile
+	- make
