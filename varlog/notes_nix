@@ -4,13 +4,18 @@
 		- ./configure --prefix=/tools && make && make install
 	- pkg-config (from the sources)
 		- ./configure --prefix=/tools --with-internal-glib --disable-compile-warnings --disable-host-tool --docdir=/tools/share/doc/pkgconfig && make && make install
+	- libidn (ftp://alpha.gnu.org/pub/gnu/libidn/libidn2-0.9.tar.gz)
 	- flex and bison (from sources)
 		- ./configure --prefix=/tools && make && make install
 	- DBI, DBD::SQLite and WWW::Curl from CPAN.
-		- This was TRICKY. First because never had to install a perl module before and I had no idea where to start. So, some points:
-			- Your folder /tools/lib/per5/5.24.0/ may not have the headers (a folder called [target-platform]/CORE). Install it isn't easy at all. I had to download a rpm file of the package perl-devel, uncompress it and manually move the headers: mv /path/to/rpm/usr/lib65/perl5/CORE /tools/lib/perl5/5.24.0 && ln -s /tools/lib/perl5/5.24.0 /tools/lib/perl5/5.24.0/[target]. Maybe make install?????
-				- sh Configure -des -Dprefix=/tools -Dlibs='-lm -lcrypt' -Dusedl
+		- This was TRICKY. First because never had to install a perl module before and I had no idea where to start. So, some points to add in the perl installation:
+			- sh Configure -des -Dprefix=/tools -Dlibs='-lm -lcrypt -ldl'
+			- make install
 			- To install the modules:
+				- ExtUtils-MakeMaker
+					- PREFIX=/tools /tools/bin/perl Makefile.PL
+					- make
+					- make install
 				- First, DBI (https://cpan.metacpan.org/authors/id/T/TI/TIMB/DBI-1.636.tar.gz)
 					- LINKTYPE=static PREFIX=/tools /tools/bin/perl Makefile.PL
 					- make static
@@ -19,7 +24,6 @@
 					- sed -i 's/-L\/usr\/local\/include/-L\/tools\/include/g' Makefile.aperl
 					- make -f Makefile.aperl perl
 					- make -f Makefile.aperl inst_perl MAP_TARGET=perl
-					- make install
 				- Now, DBD (https://cpan.metacpan.org/authors/id/I/IS/ISHIGAKI/DBD-SQLite-1.54.tar.gz)
 					- LINKTYPE=static PREFIX=/tools /tools/bin/perl Makefile.PL
 					- make static
@@ -30,26 +34,29 @@
 					- make -f Makefile.aperl inst_perl MAP_TARGET=perl
 					- make install
 				- And WWW::Curl
-					- /tools/bin/perl Makefile.PL
-					- make
+					- LINKTYPE=static PREFIX=/tools /tools/bin/perl Makefile.PL
+					- make static
+					- make perl
+					- make -f Makefile.aperl inst_perl MAP_TARGET=perl
 					- make install
 2.5- Install OpenSSL (https://github.com/openssl/openssl/archive/OpenSSL_1_1_0c.tar.gz)
 	- ./config --prefix=/tools
 	- make
-	- make test
+	- make test (optional)
 	- make install
 2.6- Install libcurl (https://curl.haxx.se/download/curl-7.50.1.tar.gz)
-	- ./config --prefix=/tools
+	- ./configure --prefix=/tools
 	- make
-	- make test (slow!)
+	- make test (slow!) (optional)
 	- make install
 3.- Install nix (https://github.com/NixOS/nix/archive/1.11.4.tar.gz) ?
-	- Reinstall bzip2 using fPIC option in the compiler
+	- Reinstall bzip2 using fPIC option in the compiler:
+		- sed -i 's/CFLAGS=/CFLAGS=-fPIC/' Makefile
 	- autoreconf
 	- mkdir -p /tools/nix/store /tools/nix/var && ./configure --prefix=/tools --with-store-dir=/tools/nix/store  --localstatedir=/tools/nix/var
 	- sed -i 's/^  misc\/upstart\/local.mk .*$/  misc\/upstart\/local.mk/g' Makefile
 	- sed -i 's/^  misc\/emacs\/local.mk .*$//g' Makefile
 	- sed -i 's/^  doc\/manual\/local.mk .*$//g' Makefile
-	- sed -i 's/^  tests\/local.mk .*$//g' Makefile
+	- sed -i 's/^  tests\/local.mk.*$//g' Makefile
 	- make
 	- make install
