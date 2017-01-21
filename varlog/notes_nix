@@ -60,3 +60,11 @@
 	- sed -i 's/^  tests\/local.mk.*$//g' Makefile
 	- make
 	- make install
+
+AND WE HAVE NOW NIX INSTALLED. WOHOHOHOHOHOHOHO.
+
+So, let's do some checking: 
+- nix-instantiate --eval --expr '"Hello world"'
+- To learn how to use nix language, recommend https://medium.com/@MrJamesFisher/nix-by-example-a0063a1a4c55#.xyn7b0hzb
+Next steps:
+- Learn how to use nix + nixpkgs
