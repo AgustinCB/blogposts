@@ -164,3 +164,18 @@ make perl
 make -f Makefile.aperl inst_perlMAP_TARGET=perl
 make install
 ```
+
+## Install nix
+
+Download [nix](https://github.com/NixOS/nix/archive/1.11.4.tar.gz).
+
+```
+autoreconf
+mkdir -p /tools/nix/store /tools/nix/var && ./configure --prefix=/tools --with-store-dir=/tools/nix/store  --localstatedir=/tools/nix/var
+sed -i 's/^  misc\/upstart\/local.mk .*$/  misc\/upstart\/local.mk/g' Makefile
+sed -i 's/^  misc\/emacs\/local.mk .*$//g' Makefile
+sed -i 's/^  doc\/manual\/local.mk .*$//g' Makefile
+sed -i 's/^  tests\/local.mk.*$//g' Makefile
+make
+make install
+```
