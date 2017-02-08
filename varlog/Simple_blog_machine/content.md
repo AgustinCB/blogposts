@@ -6,8 +6,7 @@ So what's on there?
 
 The package contains the basic REST API for a blog. By doing this I can care about the frontend as something completely separated. The API is very very very simple
 
-```
-GET /api/post
+```GET /api/post
 GET /api/post/:id
 POST /api/post
 PUT /api/post/:id
@@ -25,8 +24,7 @@ Easier to see in the code as an [example](https://github.com/AgustinCB/sbm/blob/
 
 I'm lazy. I don't want to leave my terminal and go to the browser and open a tab and go to a url and all that boring stuff. I want to be able to open vim write something in a text file and use a command to send it. That's all. And here I can:
 
-```
-sbm start --username AdminUsername --password AdminPassword --port 3000
+```sbm start --username AdminUsername --password AdminPassword --port 3000
 sbm login --username AdminUsername --password AdminPassword --url localhost:3000
 sbm create post --title "POST TITLE" --content "$(cat /path/to/post/content.md)"
 sbm edit post --content "$(cat /path/to/new/post/content.md)"
