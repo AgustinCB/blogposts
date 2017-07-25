@@ -46,7 +46,7 @@ Let's start coding. The first thing that I want is a class to create Dockerfiles
 
 I want the usage of this class to be something like this:
 
-```
+```javascript
 new Dockering(imagename)
   .from('ubuntu')
   .run(command)
@@ -56,7 +56,7 @@ new Dockering(imagename)
 
 I.e. I want to be able to chain different docker instructions in one statement. I also want the class to be immutable:
 
-```
+```javascript
 const dockerfile = new Dockering(imagename)
   .from('ubuntu'); // this is one dockerfile
 const otherDockerfile = dockerfile
@@ -65,7 +65,7 @@ const otherDockerfile = dockerfile
 
 I decided to write this using Typescript, because I like to have a compiler that will detect my mistakes. Using Typescript, I'd create a new interface called `Instruction` and a new class called `Dockering`. The class will have a list of `Instruction` and a set of methods that will define the Docker instructions and return a new `Dockering` class according to that. I want also a method `build` that will compile all the instructions into a docker image.
 
-```
+```javascript
 import * as instructions from './instructions';
 
 export default class Dockering {
@@ -129,7 +129,7 @@ The usage of that class is exactly what we were looking for.
 
 Now we have to define a command line interface usage to cover most of the usual cases. To do so, I'll use the library `minimist` and create a function that receives arguments parsed by that framework to handle the command line behaviour.
 
-```
+```javascript
 export interface Args {
   cmd?: string;
   project?: string;
@@ -178,7 +178,7 @@ As you can see, our command line tool will create a Dockerfile very similar to t
 
 With that, we can create a new executable in the project. For example, under `bin/dockering`:
 
-```
+```javascript
 #!/usr/bin/env node
 
 const minimist = require('minimist'),
@@ -202,7 +202,7 @@ dockering --name newimagename --tag tag --cmd "npm start" --port 8080 --project 
 
 That way, we can create a new script in `package.json` to dockerify our node apps in one very simple step:
 
-```
+```json
 {
   "scripts": {
     "docker": "dockering"
