@@ -1,25 +1,25 @@
 # Docker and Node made easy
 
-Recently I started working in a new project for a new client. The idea is to make an app that will list all the happy hours happening near you in the next hours. I decided to use the same stack that I'm using in my other projects: Scala and PostgreSQL for the backend and Typescript with React for the frontend. We would deploy the app using containers through Heroku.
+Recently, I started working in a new project for a new client. The idea is to make an app that will list all the happy hours that are happening near you. I decided to use the same stack that I'm using in my other projects right, because I don't like change. That's Scala and PostgreSQL for the backend and Typescript with React for the frontend. We would deploy the app using containers through Heroku.
 
-While I was preparing the containers, I made a wonderful discovery: [sbt-docker](https://github.com/marcuslonnberg/sbt-docker). It's a plugin for `sbt`, the build tool I use when I program in Scala. It's nice for two reasons:
+While I was preparing the containers, I made a wonderful discovery: [sbt-docker](https://github.com/marcuslonnberg/sbt-docker). It's a plugin for `sbt`, the build tool I use when I program in Scala, to create containers from scala projects. It's nice for two reasons:
 
 - I can build the new image by just typing `sbt docker`.
 - I can write the specs of my docker image (i.e. the Dockerfile) using Scala. This let's me avoid having to remember the details of the Dockerfile syntax and at the same time, have all the project completily integrated.
 
-I enjoyed so much that plugin, that I decided to look for something similar for Node and there was nothing that completely satisfied my expectatives. And so, I decided that I'd write my own.
+I enjoyed so much that plugin, that I decided to look for something similar for Node and there was nothing that satisfied my expectatives completely. And so, I decided that I'd write my own.
 
 ## Requirements
 
-This is what I want from this plugin:
+This is what I want:
 
-1. I want to be able to cover 90% of the most usual cases without having to write any extra code. I want to do something like this in the main directory: `name-of-the-awesome-tool --name container-name --tag container-tag --port 8080` and get a new image tagged as `container-name:container-tag` without anything extra.
+1. I want to be able to cover 90% of the most usual cases without having to write any extra code. I want to do something like this in the main directory: `name-of-the-awesome-tool --name container-name --tag container-tag --port 8080` and get a new image tagged as `container-name:container-tag` that will run the project on port 8080.
 2. I want it to be integrated in the node ecosystem. I.e. I want to be able to install it using `npm` and to create an script in the `package.json` file that will automatically run the command mentioned above.
-3. For the other 10% of the cases, in which I need something more particular, I want to be able to handle them using Javascript (no Dockerfile syntax, please, I have enough having to remember all the languages I use) and in an expressive way. As similar as possible to what you would use with `sbt-docker`.
+3. For the other 10% of the cases, in which I need something more particular, I want to be able to handle them using Javascript (no Dockerfile syntax, please, I have enough having to remember all the languages I use) and in an expressive way. As similar as possible to what you would do with `sbt-docker`.
 
 ## Basic Dockerfile
 
-Usually most of my node apps look something like this:
+Usually most of my node apps have a Dockerfile that looks something like this:
 
 ```
 FROM node
@@ -34,9 +34,9 @@ CMD [ "npm", "start" ]
 
 Some notes about this approach:
 
-1. As you can see, I'm not defining a node version in the image I pull from. That's not as simple as it may seem. For now, I'll use lastest version. In the future, I'll parse section [engines](https://docs.npmjs.com/files/package.json#engines) to decide which one to specify.
+1. As you can see, I'm not defining a node version in the image I pull from. I do that in my apps, normally, but for this case I'll ignore it. It's not as simple as it may seem. For now, I'll use lastest version. In the future, I'll parse section [engines](https://docs.npmjs.com/files/package.json#engines) to decide which one to specify.
 2. I'm copying first the `package.json` and then the rest of the directory. The reason is very simple: This way I can cache the step of running `npm install`. The benefit being not having to run it every time I modify something in the code that isn't related with my dependencies.
-3. I use the convention `npm start`. For the same reason than 1., I prefer to delegate as much logic as possible to the node configuration file. If you want to see how to start an app, you should look at `package.json`, not at the docker file.
+3. I use the convention `npm start`. For the same reason than 1., I prefer to delegate as much logic as possible to the node configuration file. If you want to see how to start an app, you should look at `package.json`, not at the Dockerfile.
 
 Ideally, my new app will create something very similar to that by default.
 
@@ -117,12 +117,13 @@ You can see a full example of this [here](https://github.com/AgustinCB/dockering
 
 I think most of that code explains by itself, with the exception of the `build` method. Some comments there:
 
-1. I'm using the external libraries `tar-fs` to deal with tar files and `docker-node-api` to deal with the docker API.
+1. I'm using two external libraries: `tar-fs` to deal with tar files and `docker-node-api` to deal with the docker API.
 2. I don't include in the docker file the content of the node_modules folder.
 3. I don't actually create a Dockerfile in the user filesystem, but add it into the tar stream that will be passed to docker. No need to slow things down by saving to disk.
 4. The function `promisifyStream` receives an stream and returns a `Promise` that succeeds after the event `end` is fired and is rejected if the event `error` happened. On `data`, it prints the content in the terminal, so you can see the progress of the build.
+5. You can see the content of the instructions file [here](https://github.com/AgustinCB/dockering/blob/5877efe77ec1be4a76fd3efbf42690aab01a76a2/src/instructions.ts) although that's not necessary to understand how this works.
 
-The usage of that class is exactly what we were looking for. You can see the content of the instructions file [here](https://github.com/AgustinCB/dockering/blob/5877efe77ec1be4a76fd3efbf42690aab01a76a2/src/instructions.ts) although that's not necessary to understand how this works.
+The usage of that class is exactly what we were looking for. 
 
 ## Command line interface
 
