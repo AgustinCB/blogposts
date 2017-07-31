@@ -55,7 +55,7 @@ Another thing I want to mention: Types are good. SPECIALLY for a beginner. An an
 
 A couple years ago, a good friend of mine decided that he wanted to be a software developer and asked me for advice on where to start. Because is a common place, I told him that Python is a good enough choice (easy and with market).
 
-He started learning it and now and then would ask me things as he went. Parallely, he started a course in Java. One day, he commented me:
+So he started [LPHW](https://learnpythonthehardway.org/). Parallely, he started a course in Java. Every time we saw each other, we would comment on the problems he was having or the goals he achieved. One day, he said something very insteresting:
 
 "You know, I find Java much easier to follow. When I write a function, I know at the moment what's returning, what are the parameters and I don't need extra time to understand what's happening there."
 
