@@ -1,8 +1,8 @@
 # What I learnt in half a year of mentoring
 
-In November past year I started working with Roy, a very nice guy that (at the time) wanted to improve his Ruby on Rails and ReactJS skills. He would be my first mentoree and, as a matter of fact, the first one ever in learning anything from me.
+In November past year I started working with Roy, a very nice guy that (at the time) wanted to improve his Ruby on Rails and ReactJS skills. He would be my first mentoree and, as a matter of fact, the first one ever learning anything from me.
 
-It's been more than six months since then and a lot of things have changed. A couple days ago I was contacted by another possible mentoree and at this point, before my second adventure, I think is a good time to review how things have gone, what worked and what could be improved.
+A couple days ago I was contacted by another possible mentoree and at this point, before my second adventure, I think is a good time to review how things have gone, what worked and what could be improved. It's been more than six months since then and a lot of things have changed.
 
 ## My initial expectations
 
