@@ -20,7 +20,7 @@ I think all this could have been prevented with a prescreening. If I had had a f
 
 ## Our first contacts
 
-Roy had a couple unusual qualities that I wasn't expecting before hand: He already know the basics of programming (in fact, he had a couple years of experience) and he was working professionally in the field. In fact, his company was sponsoring the process. I came to realise quickly that most people looking for a mentor aren't outside the industry but inside: As junior developers wanting to improve their skills or in related possitions (business intelligence, TPM, web designers) trying to make a career move.
+Roy had a couple unusual qualities that I wasn't expecting before hand: He already know the basics of programming (in fact, he had a couple years of experience) and he was working professionally in the field. In fact, his company was sponsoring the process. I came to realise quickly that most people looking for a mentor aren't outside the industry but inside: As junior developers wanting to improve their skills or in related positions (business intelligence, TPM, web designers) trying to make a career move.
 
 Because of his background, my first decision was to do pair programming sessions. We would pick a project to build (in our case, a forum) and we would go through the process of building it together.
 
@@ -46,7 +46,7 @@ Although the original idea was to work on Rails and React, I wanted to make our 
 
 At the beginning that was a little bit difficult, specially because I didn't how to push our sessions that way. However, the fact that Roy had previous working experience and already knew the basis of the technologies we were using, helped a lot in this matter. Slowly, I tried to focus our time on how to engineer projects and how to pick tool rather than mastering the hammer and the saw.
 
-Something that helped me here was instroducing new things in the equation: "Ey, what if we convert our web app in a phone app?", "Ey, what if we put all this in a Docker container?", "Ey, what if we use typescript?"
+Something that helped me here was introducing new things in the equation: "Ey, what if we convert our web app in a phone app?", "Ey, what if we put all this in a Docker container?", "Ey, what if we use typescript?"
 
 That was my second victory. I think that taking a more elastic approach in what to learn helped us a lot. I knew when something very small (and unplanned) happened:
 
@@ -64,7 +64,7 @@ I don't want to leave without speaking about this. I think that most of the time
 
 - Third party errors: A couple times, we found bugs in the libraries we were using. That gave us a lot of cool opportunities: First, to learn how to properly administrate dependencies and second to learn how to submit a pull request with fixes. He even made a contribution to the repository [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) to fix one of the problems we were having.
 
-- CORS problems. Because noone can escape CORS while working in web development.
+- CORS problems. Because no one can escape CORS while working in web development.
 
 - OOM (Out Of Memory). When we moved to big data processing, we faced in a couple cases problems with lack of memory. That gave us the chance to learn how to analyse our solutions and how to optimize it. And if it can be optimized! In a couple situations, we simply had to deal with smaller data.
 
@@ -82,4 +82,4 @@ So I'm about to start with a new mentee. After all this time, what did I learn?
 
 - Adaptability. I, as a mentor, should know how to adapt to the person I'm working with and the expectations that they have.
 
-I feel very sorry for Roy, because he had to suffer my inexperience in the subject. At the same time, I'm very grateful and I can't wait to apply all the things I learnt with in this new opportunity.
+I feel that Roy had to suffer a bit of my inexperience in the subject, and I apologise for that. At the same time, I think we both learnt a lot in the process and I can’t wait to apply what has been learnt in the new experience.
