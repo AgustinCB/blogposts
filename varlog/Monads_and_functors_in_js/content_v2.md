@@ -1,6 +1,6 @@
 # Handling nullable values with monad and functors in JS
 
-Not so long ago, we spoke about [lazy evaluation](https://www.codementor.io/agustinchiappeberrini/lazy-evaluation-and-javascript-a5m7g8gs3). I mentioned in there that the data structure we were creating was actually a monad. I didn't mentioned it, but it's also a functor. I also said that what a monad is, why they're interesting and how to use them was a subject for a different article. And this is said article! I'll try to give a brief explanation to monads and functors in a practical way solving a very typical problem: Nullable values.
+Not so long ago, we spoke about [lazy evaluation](https://agustincb.github.io/post/Lazy%20Evaluation%20with%20Javascript). I mentioned in there that the data structure we were creating was actually a monad. I didn't mentioned it, but it's also a functor. I also said that what a monad is, why they're interesting and how to use them was a subject for a different article. And this is said article! I'll try to give a brief explanation to monads and functors in a practical way solving a very typical problem: Nullable values.
 
 ## The problem
 
