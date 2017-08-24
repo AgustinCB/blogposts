@@ -1,8 +1,8 @@
 # Experimenting with Void Linux
 
-Bored of working with client's and work's project, I decided to commit to a personal project. I have a couple laptops laying around that aren't being used for anything, so I thought I'd use them to start experimenting.
+Bored of working with client's and other persons' project, I decided to commit to one of my crazy ideas. I have a couple laptops laying around that aren't being used for anything, so I thought I'd use them to start experimenting.
 
-The first thing I have to do is set them up. I decided to take this chance to experiment el little bit. I prefer to use tested and stable technologies when working in someone else's project, but I don't mind to go crazy on my own. I have been reading about Void Linux and I decided to give it a chance and install it in the laptops.
+The first thing I had to do is set them up. I decided to take this chance to experiment a little bit. I prefer to use tested and stable technologies when working in someone else's project, but I don't mind to go crazy on my own. I have been reading about this thing called Void Linux and I decided to give it a chance and install it in the laptops.
 
 ## Why I chose Void Linux
 
