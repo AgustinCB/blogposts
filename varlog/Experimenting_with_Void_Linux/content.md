@@ -73,10 +73,17 @@ export CFLAGS="$CFLAGS -I/usr/include/openssl-1.0 -Wno-error=implicit-fallthroug
 
 That seemed to do the trick. Note that I added `format-truncation=` also in the list. That's another warning that gave me problems in the build.
 
-This was a very painful step, to be fair.
+This was a very painful step, to be fair. And it made me curious. What were these warnings about? Where they... important? It's never a good idea to shut up the compiler when it's complaining (what we did here). So I decided to go to the repository of XBPS, try to build the application and see if I could reproduce.
 
-## Notes
+And I could. It turns out that the project was tested under GCC 4.X and I was using GCC 7. Because it was configured to treat every warning as an error (an excellent idea) and GCC 7 introduced new warnings that weren't available in the version 4, it failed when I tried to compile.
 
-After ignoring the warnings during the compilation of XBPS, I wondered if they were valid reports or not. So I made a fork of the project and tried to go over the code to see what was going on. I tried to fix all the problems there and made a [PR](https://github.com/voidlinux/xbps/pull/254) to the repository to try to merge my changes.
+The second step would be to check if they were valid complains. And, I suspect, they were. You can see a pull request with the changes I made in this [PR](https://github.com/voidlinux/xbps/pull/254). Because I didn't want to use a version of the program those insecure accesses to memory, I decided that I'd redo the process using my fork of the program. At least, till I get some feedback in the pull request. With that, I decided to start by uninstalling the package and install it again:
 
-Hopefully they're right and by the time you try this, they're already merged.
+```bash
+yaourt -Rs xbps-git
+yaourt -S xbps-git
+```
+
+This time, while editing the `PKGBUILD`, I'd do two changes: Specify the new OpenSSL version to use and modify the `url` and `source` variables to point to `https://github.com/AgustinCB/xbps` instead of `https://github.com/voidlinux/xbps`.
+
+And that worked just fine :).
