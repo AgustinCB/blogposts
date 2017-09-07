@@ -24,7 +24,7 @@ So I wanted to install Void from my machine. To do so, I opened my laptops, take
 
 And therefore the steps I folllowed were:
 
-- Partition the disks. I created two partitions, one for `/` and another one for `/mnt`. The first one with 10G of space, the other one with the rest of the disk. I did it using gparted because I love that program, but it really doesn't matter at all.
+- Partition the disks. I created two partitions, one for `/` and another one for `/mnt`. The first one with 10G of space, the other one with the rest of the disk. I did it using gparted because I love that program, but it really doesn't matter at all. I decided to use btrfs, but ext4 could work just as nicely.
 
 - My next step was to install the Void Package Manager from AUR. No mistery there:
 
