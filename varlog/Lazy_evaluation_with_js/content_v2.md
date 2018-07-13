@@ -13,7 +13,7 @@ Suppose this code:
 console.log(someValue);
 ```
 
-As it is, expensiveFuntion will be executed executed first. Then a bunch of unrelated expressions, include the creation of a user interface. At the very end of the program, and for the first time, we use someValue (the result of expensiveFunction) to print it in the terminal.
+As it is, expensiveFunction will be executed executed first. Then a bunch of unrelated expressions, include the creation of a user interface. At the very end of the program, and for the first time, we use someValue (the result of expensiveFunction) to print it in the terminal.
 
 So we ran a very demanding function at the beginning to use its returned value at the end of the program. If expensiveFunction were a CPU bounded function, we would have interfered in the user experience, probably blocking the browser.
 
