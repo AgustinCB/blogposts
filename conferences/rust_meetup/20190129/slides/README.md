@@ -1,28 +1,14 @@
 [![GitPitch](https://gitpitch.com/assets/badge.svg)](https://gitpitch.com/gitpitch/in-60-seconds/master?grs=github)
 
-# GitPitch In 60 Seconds
+# Martians, old cpus and the borrow checker
 
-To experience the simplicity and power of the GitPitch markdown
-presentation service, follow along with this short tutorial.
+Or how my stupidity can be a great example on how to please the borrow checker.
 
-> Tutorial also available for [GitLab](https://gitlab.com/gitpitch/in-60-seconds) and [Bitbucket](https://bitbucket.org/gitpitch/in-60-seconds) users.
+### What is this talk about
 
-### Introduction
-
-As a *GitHub* user you are probably familiar with the **README.md** convention.
-A convention that automatically turns any **README.md** file found within a
-*GitHub* repository into nicely rendered project documentation on *github.com*.
-
-GitPitch introduces a brand new convention for all *GitHub* users, the
-**PITCHME.md** convention.
-
-This new convention automatically turns any **PITCHME.md** file found within a *GitHub* repository into a modern, responsive slide deck that is automatically available for sharing and presenting directly on
-[gitpitch.com](https://gitpitch.com).
-
-With awareness of this new **PITCHME.md** convention in mind, let's jump
-straight into the *GitPitch In 60 Seconds* tutorial.
-
-<br>
+1. Space invaders.
+2. Rust and the borrow checker.
+3. Reading the documentation.
 
 ### Step 1. Fork this Repository
 
