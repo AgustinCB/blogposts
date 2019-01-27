@@ -1,15 +1,5 @@
 [![GitPitch](https://gitpitch.com/assets/badge.svg)](https://gitpitch.com/gitpitch/in-60-seconds/master?grs=github)
 
-# Martians, old cpus and the borrow checker
-
-Or how my stupidity can be a great example on how to please the borrow checker.
-
-### What is this talk about
-
-1. Space invaders.
-2. Rust and the borrow checker.
-3. Reading the documentation.
-
 ### Step 1. Fork this Repository
 
 Create a fork of this repository.

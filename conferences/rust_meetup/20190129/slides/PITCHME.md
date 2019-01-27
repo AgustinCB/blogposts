@@ -1,10 +1,20 @@
-# Let's Get Started
+# Martians, old cpus and the borrow checker
+
+Or how my stupidity can be a great example on how to please the borrow checker.
 
 ---
 
-## Add Some Slide Candy
+## What is this talk about
 
-![](assets/img/presentation.png)
+1. Space invaders.
+2. Rust and the borrow checker.
+3. Reading the documentation.
+
+---
+
+## The project
+
+![](assets/img/motherboard.png)
 
 ---
 @title[Customize Slide Layout]
