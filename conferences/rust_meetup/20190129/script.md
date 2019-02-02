@@ -21,3 +21,7 @@ One of the long term objectives that I had was to be able to modify the console.
 # Forth slide
 
 Some of you may already know why this won't work. For those who don't: The borrow checker will complain that I am using here a variable whose ownership I gave up here. It's fair. When I saw this, I noded, I went to The Book and came back with this solution after skiming one chapter.
+
+# Fifth slide
+
+Again, some of you may already know what's wrong with this. Basically, I read about the `Rc` datastructure, about how it shared information and thought it was the solution. I also though, "well, surely `Rc` also works as `Box` when you pass it a `trait`, right?" Well...
