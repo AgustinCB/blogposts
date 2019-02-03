@@ -17,8 +17,8 @@ struct Cpu {
 
 struct Console {
     cpu: Cpu,
-    sounds: Vec<SoundDevice>,
-    buttons: Vec<ButtonDevice>,
+    sounds: Vec<Rc<SoundDevice>>,
+    buttons: Vec<Rc<ButtonDevice>>,
 }
 
 impl Console {
@@ -29,14 +29,14 @@ impl Console {
         };
         let sound1 = Rc::new(SoundDevice {});
         let sound2 = Rc::new(SoundDevice {});
-        let sounds = vec![sound1, sound2];
-        cpu.inputs.push(sound1);
-        cpu.inputs.push(sound2);
+        let sounds = vec![sound1.clone(), sound2.clone()];
+        cpu.outputs.push(sound1.clone());
+        cpu.outputs.push(sound2.clone());
         let button1 = Rc::new(ButtonDevice {});
         let button2 = Rc::new(ButtonDevice {});
-        let buttons = vec![button1, button2];
-        cpu.inputs.push(button1);
-        cpu.inputs.push(button2);
+        let buttons = vec![button1.clone(), button2.clone()];
+        cpu.inputs.push(button1.clone());
+        cpu.inputs.push(button2.clone());
         Console {
             cpu,
             sounds,
