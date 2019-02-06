@@ -14,11 +14,12 @@ enum Button {
 struct ButtonDevice {
     pressed: Option<Button>,
 }
-impl InputDevice for ButtonDevice {
+impl ButtonDevice {
     fn press_button(&mut self, button: Button) {
         self.pressed = Some(button);
     }
 }
+impl InputDevice for ButtonDevice {}
 
 struct SoundDevice {}
 impl OutputDevice for SoundDevice {}
@@ -46,12 +47,12 @@ impl Console {
         let sounds = vec![sound1.clone(), sound2.clone()];
         cpu.outputs.push(sound1.clone());
         cpu.outputs.push(sound2.clone());
-        let button1 = Rc::new(ButtonDevice {});
-        let mut button2 = Rc::new(ButtonDevice {});
+        let button1 = Rc::new(ButtonDevice { pressed: None });
+        let mut button2 = Rc::new(ButtonDevice { pressed: None });
         let buttons = vec![button1.clone(), button2.clone()];
         cpu.inputs.push(button1.clone());
         cpu.inputs.push(button2.clone());
-        buttons2.press_button(Button::Coin);
+        button2.press_button(Button::Coin);
         Console {
             cpu,
             sounds,

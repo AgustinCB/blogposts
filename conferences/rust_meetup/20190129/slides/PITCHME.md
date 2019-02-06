@@ -16,6 +16,35 @@ Or how my stupidity can be a great example on how to please the borrow checker.
 
 ![](assets/img/motherboard.png)
 
+## `Rc`'s references are immutable
+
+```
+$ cargo build
+   Compiling third_try v0.1.0 (/home/agustin/projects/blogposts/conferences/rust_meetup/20190129/third_try)
+warning: variable does not need to be mutable
+  --> src/lib.rs:51:13
+   |
+51 |         let mut button2 = Rc::new(ButtonDevice { pressed: None });
+   |             ----^^^^^^^
+   |             |
+   |             help: remove this `mut`
+   |
+   = note: #[warn(unused_mut)] on by default
+
+error[E0596]: cannot borrow data in a `&` reference as mutable
+  --> src/lib.rs:55:9
+   |
+55 |         button2.press_button(Button::Coin);
+   |         ^^^^^^^ cannot borrow as mutable
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0596`.
+error: Could not compile `third_try`.
+
+To learn more, run the command again with --verbose
+```
+
 ---
 @title[Customize Slide Layout]
 
