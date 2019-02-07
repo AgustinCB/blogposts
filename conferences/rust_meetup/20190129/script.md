@@ -25,3 +25,7 @@ Some of you may already know why this won't work. For those who don't: The borro
 # Fifth slide
 
 This will kinda work. It compiles just fine, that's for sure. We are basically using a datastructure called "reference counter," we can think of it as a smart pointer that contains a counter to the number of places in which this counter is active. It only frees the memory when that number reaches zero. It's very useful when we want to "share" an object between multiple actors in the same scope. However, it has one shortcoming...
+
+# Sixth slide
+
+Now here I am trying to modify the structure that is contained in `Rc`. Because I read only one small paragraph in one chapter in the Book when I tried to solve this, I didn't notice that `Rc` works as read only. This is the kind of error that you'd get. So the next thing that I do is go back to the Book and look for a way to do this, but at the same time be able to modify the content. And I come back with this...
