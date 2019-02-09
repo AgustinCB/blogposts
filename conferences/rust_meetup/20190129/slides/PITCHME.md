@@ -45,6 +45,22 @@ error: Could not compile `third_try`.
 To learn more, run the command again with --verbose
 ```
 
+# `RefCell` hates traits
+
+```
+   Compiling fourth_try v0.1.0 (/home/agustin/projects/blogposts/conferences/rust_meetup/20190129/fourth_try)
+error[E0277]: the size for values of type `(dyn InputDevice + 'static)` cannot be known at compilation time
+  --> src/lib.rs:29:5
+   |
+29 |     pub inputs: Vec<RefCell<InputDevice>>,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ doesn't have a size known at compile-time
+   |
+   = help: within `std::cell::RefCell<(dyn InputDevice + 'static)>`, the trait `std::marker::Sized` is not implemented for `(dyn InputDevice + 'static)`
+   = note: to learn more, visit <https://doc.rust-lang.org/book/ch19-04-advanced-types.html#dynamically-sized-types-and-the-sized-trait>
+   = note: required because it appears within the type `std::cell::RefCell<(dyn InputDevice + 'static)>`
+   = note: required by `std::vec::Vec`
+```
+
 ---
 @title[Customize Slide Layout]
 

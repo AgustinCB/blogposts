@@ -29,3 +29,13 @@ This will kinda work. It compiles just fine, that's for sure. We are basically u
 # Sixth slide
 
 Now here I am trying to modify the structure that is contained in `Rc`. Because I read only one small paragraph in one chapter in the Book when I tried to solve this, I didn't notice that `Rc` works as read only. This is the kind of error that you'd get. So the next thing that I do is go back to the Book and look for a way to do this, but at the same time be able to modify the content. And I come back with this...
+
+# Seventh slide
+
+As you can see, I replaced all the references to `Rc` for reference to `RefCell`. `RefCell` works similarly to `Rc` but it let's you mutate the content of the smart pointer, which is exactly what I wanted. However, the compiler had a surprise for me...
+
+# Eight slide
+
+What a cryptic error message! Well, sadly it actually makes sense. You see, I thought that the parallel with `Rc` would still hold when speaking about trait objects. That is, that `RefCell` would understand that this was meant to be a pointer to a structure implementing an interface and not care about the actual implementation, but it turns out that it needs to know the size of the structure at compile time.
+
+At this point I was desperate. I didn't want to have to _read_ again, so I decided to look in Google how to create a mutating list of trait objects in Rust without loosing my mind. The solution is this...
