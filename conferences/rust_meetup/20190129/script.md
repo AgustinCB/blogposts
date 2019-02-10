@@ -32,10 +32,16 @@ Now here I am trying to modify the structure that is contained in `Rc`. Because 
 
 # Seventh slide
 
-As you can see, I replaced all the references to `Rc` for reference to `RefCell`. `RefCell` works similarly to `Rc` but it let's you mutate the content of the smart pointer, which is exactly what I wanted. However, the compiler had a surprise for me...
+As you can see, I replaced all the references to `Rc` for reference to `RefCell`, understanding that `RefCell` works similarly to `Rc` but it let's you mutate the content of the smart pointer, which is exactly what I wanted. However, the compiler had a surprise for me...
 
 # Eight slide
 
 What a cryptic error message! Well, sadly it actually makes sense. You see, I thought that the parallel with `Rc` would still hold when speaking about trait objects. That is, that `RefCell` would understand that this was meant to be a pointer to a structure implementing an interface and not care about the actual implementation, but it turns out that it needs to know the size of the structure at compile time.
 
-At this point I was desperate. I didn't want to have to _read_ again, so I decided to look in Google how to create a mutating list of trait objects in Rust without loosing my mind. The solution is this...
+Well, I thought, then it's just a matter of adding a `Box` in the mix, RIGHT?
+
+# Ninth slide
+
+This is how my solution looked like now. I had high hopes for this. However...
+
+At this point I was desperate. I didn't want to have to _read_ again, so I decided to look in Google how to create a mutating list of trait objects in Rust without loosing my mind. I found the solution in a dark corner of reddit and the type reads something like this...
