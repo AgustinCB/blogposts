@@ -62,6 +62,12 @@ error[E0277]: the size for values of type `(dyn InputDevice + 'static)` cannot b
 ```
 
 ---
+
+```
+Vec<Rc<RefCell<Box<InputDevice>>>>
+```
+
+---
 @title[Customize Slide Layout]
 
 @snap[west span-50]
