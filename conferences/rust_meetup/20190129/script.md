@@ -45,3 +45,9 @@ Well, I thought, then it's just a matter of adding a `Box` in the mix, RIGHT?
 This is how my solution looked like now. I had high hopes for this. However...
 
 At this point I was desperate. I didn't want to have to _read_ again, so I decided to look in Google how to create a mutating list of trait objects in Rust without loosing my mind. I found the solution in a dark corner of reddit and the type reads something like this...
+
+# Tenth slide
+
+Look at that monstruosity. If you think about it, it makes sense: It is a vector, of reference counted, mutable references to trait objects. But the signature is a nightmare. I admit I was somewhat disappointed, I mean, imagine you are a poor co-op  student who did Java and Scheme in university and see this in your first week of work. You'd probably understand few and less. It was a disappointing experience, because although I understood why this signature is necessary, it still felt wrong.
+
+And that was, of course, because it was wrong. In the same reddit thread, there's the following message:
