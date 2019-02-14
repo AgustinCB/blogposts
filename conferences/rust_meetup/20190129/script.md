@@ -51,3 +51,7 @@ At this point I was desperate. I didn't want to have to _read_ again, so I decid
 Look at that monstruosity. If you think about it, it makes sense: It is a vector, of reference counted, mutable references to trait objects. But the signature is a nightmare. I admit I was somewhat disappointed, I mean, imagine you are a poor co-op  student who did Java and Scheme in university and see this in your first week of work. You'd probably understand few and less. It was a disappointing experience, because although I understood why this signature is necessary, it still felt wrong.
 
 And that was, of course, because it was wrong. In the same reddit thread, there's the following message:
+
+# Eleventh slide
+
+Now isn't this interesting. This guy has a point: Instead of making the whole structure mutable, I could make mutable only the bits that you know... actually mutate. This has some downsides, though, in that now the methods of the structure that cause mutation won't be marked as `&mut self` in the signature. But we are willing to pay that if the prize is not using the previous mounstrosity.
