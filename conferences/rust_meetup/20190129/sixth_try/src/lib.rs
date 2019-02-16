@@ -13,7 +13,7 @@ enum Button {
 }
 
 struct ButtonDevice {
-    pressed: RefCell<Option<Button>,
+    pressed: RefCell<Option<Button>>,
 }
 impl ButtonDevice {
     fn press_button(&self, button: Button) {
@@ -48,8 +48,8 @@ impl Console {
         let sounds = vec![sound1.clone(), sound2.clone()];
         cpu.outputs.push(sound1.clone());
         cpu.outputs.push(sound2.clone());
-        let button1 = Rc::new(ButtonDevice { pressed: None });
-        let button2 = Rc::new(ButtonDevice { pressed: None });
+        let button1 = Rc::new(ButtonDevice { pressed: RefCell::new(None) });
+        let button2 = Rc::new(ButtonDevice { pressed: RefCell::new(None) });
         let buttons = vec![button1.clone(), button2.clone()];
         cpu.inputs.push(button1.clone());
         cpu.inputs.push(button2.clone());
