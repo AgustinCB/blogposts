@@ -82,6 +82,10 @@ struct User {
 This indicates a design where the username never changes during the lifetime of a user, but the score does (because it does not require a mutable reference to do so)."
 
 ---
+
+Q&A
+
+---
 @title[Customize Slide Layout]
 
 @snap[west span-50]
