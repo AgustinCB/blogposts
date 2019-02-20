@@ -67,6 +67,19 @@ impl Console {
 
 ---
 
+```
+error[E0277]: the trait bound `SoundDevice: InputDevice` is not satisfied
+  --> src/lib.rs:31:25
+   |
+31 |         cpu.inputs.push(Box::new(sound1));
+   |                         ^^^^^^^^^^^^^^^^ the trait `InputDevice` is not implemented for `SoundDevice`
+   |
+   = note: required for the cast to the object type `dyn InputDevice`
+
+```
+
+---
+
 ## The `Rc` attempt
 
 ```
