@@ -391,6 +391,23 @@ impl Console {
 
 ---
 
+## I wanna cry
+
+```
+error[E0599]: no method named `clone` found for type `std::cell::RefCell<std::boxed::Box<SoundDevice>>` in the current scope
+  --> src/lib.rs:47:34
+   |
+47 |         let sounds = vec![sound1.clone(), sound2.clone()];
+   |                                  ^^^^^
+   |
+   = note: the method `clone` exists but the following trait bounds were not satisfied:
+           `std::cell::RefCell<std::boxed::Box<SoundDevice>> : std::clone::Clone`
+```
+
+---
+
+## The monster
+
 ```
 Vec<Rc<RefCell<Box<InputDevice>>>>
 ```
