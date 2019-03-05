@@ -16,6 +16,8 @@ Or how my stupidity can be a great example on how to please the borrow checker.
 
 ![](assets/img/motherboard.1.png)
 
+---
+
 ## First attempt
 
 ```
