@@ -14,7 +14,7 @@ Or how my stupidity can be a great example on how to please the borrow checker.
 
 ## The project
 
-![](assets/img/motherboard.png)
+![](assets/img/motherboard.1.png)
 
 ## First attempt
 
@@ -67,7 +67,7 @@ impl Console {
 
 ---
 
-# The problem
+## The problem
 
 ```
 error[E0277]: the trait bound `SoundDevice: InputDevice` is not satisfied
