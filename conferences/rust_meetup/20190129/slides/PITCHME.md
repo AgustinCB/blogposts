@@ -14,7 +14,9 @@ Or how my stupidity can be a great example on how to please the borrow checker.
 
 ## The project
 
-![](assets/img/motherboard.png)
+![](assets/img/motherboard.1.png)
+
+---
 
 ## First attempt
 
@@ -67,7 +69,7 @@ impl Console {
 
 ---
 
-# The problem
+## The problem
 
 ```
 error[E0277]: the trait bound `SoundDevice: InputDevice` is not satisfied
@@ -416,17 +418,7 @@ Vec<Rc<RefCell<Box<InputDevice>>>>
 
 ## The Reddit enlightment
 
-"Direct mutability is another matter. I don't think that is planned, and I doubt it'll work with Rust's ownership system either. But just as a tip - for my own part, I've come to prefer Rc<Box<Trait>> over Rc<RefCell<Box<Trait>>>. (Or just Rc<Struct> when you don't need dynamic dispatch.) The reasoning is that for bigger objects; only some fields change during the lifetime of that object, and then you can internally Cell or RefCell those fields instead. E g, consider this user struct in a multiplayer game:
-
-```
-struct User {
-    username: String,
-    score: Cell<u64>,
-    /* And many more fields */
-}
-```
-
-This indicates a design where the username never changes during the lifetime of a user, but the score does (because it does not require a mutable reference to do so)."
+"Direct mutability is another matter. I don't think that is planned, and I doubt it'll work with Rust's ownership system either. But just as a tip - for my own part, I've come to prefer Rc<Box<Trait>> over Rc<RefCell<Box<Trait>>>. (Or just Rc<Struct> when you don't need dynamic dispatch.) The reasoning is that for bigger objects; only some fields change during the lifetime of that object, and then you can internally Cell or RefCell those fields instead."
 
 ---
 
