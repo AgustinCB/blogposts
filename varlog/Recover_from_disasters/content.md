@@ -10,4 +10,10 @@ completely forget about the second one (because, you know, _Windows_).
 Ten days ago, I started doing a tutorial on how to program games in C++
 using Unreal. After suffering much with the Linux version, I took the 
 disk with windows installed, used a "sata to usb" interface and boot it
-on a virtual machine.
+on a virtual machine. After boot, I noticed that it didn't go to 
+Windows, but to a grub install. I turned off the virtual machine and 
+stopped to think: If it were using the disk that I had as my primary 
+disk, it should have complained because it was already mounted and busy.
+Therefore, it had to be that I confused disks and was using the old one
+from my laptop. I decided then to just wipe it and install Windows
+there (it's spreading!!!!).
