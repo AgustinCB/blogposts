@@ -34,4 +34,7 @@ Next thing I did was turn on the computer, install [TestDisk](https://www.cgsecu
 and run it on the ruined disk. Fortunately, the application was able to
 spot the previous BTRFS partition table and I could go back to it. Of 
 course, that wasn't good enough: Those partitions and subvolumes were 
-useless.
+useless. It was barely able to mount the partition and failed to mount 
+subvolumes. Both `btrfs check` and `btrfs repair` failed too.
+
+Researching, I found a wonderful tool: [btrfs restore](http://man7.org/linux/man-pages/man8/btrfs-restore.8.html)
