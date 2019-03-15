@@ -38,3 +38,11 @@ useless. It was barely able to mount the partition and failed to mount
 subvolumes. Both `btrfs check` and `btrfs repair` failed too.
 
 Researching, I found a wonderful tool: [btrfs restore](http://man7.org/linux/man-pages/man8/btrfs-restore.8.html)
+and decided that's what I would try. It worked very nicely: I was able
+to recover most of the configuration I had changes in the last month, 
+the image of the virtual machine and some of the work. There were some
+stuff that I completely lost, but I kinda knew that was a possibility.
+
+After I recovered all the stuff, I decided to also create a backup 
+system using a raspberry pi, a usb disk and `btrfs send` and
+`btrfs receive`, but that's a story for a different post.
