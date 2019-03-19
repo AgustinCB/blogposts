@@ -10,16 +10,17 @@ forget about the second one (because, you know, _Windows_).
 Ten days ago, I started doing a tutorial on how to program games in C++
 using Unreal. After suffering much with the Linux version, I took the 
 disk with windows installed, used a "sata to usb" interface and boot it
-on a virtual machine. After boot, I noticed that it didn't go to 
-Windows, but to a grub install. I turned off the virtual machine and 
-stopped to think: If it were using the disk that I had as my primary 
-disk, it should have complained because it was already mounted and busy.
-Therefore, it had to be that I confused disks and was using the old one
-from my laptop. I decided then to just wipe it and install Windows
-there (it's spreading!!!!). When I finished installing it, I noticed my
-host system starting to behave strangely and I had a gut feeling that 
-was quickly confirmed: I had installed Windows in my main disk, erasing
-whatever was there before.
+on a virtual machine. I noticed that it didn't go to Windows, but to a
+grub install. I turned off the virtual machine and  stopped to think:
+If it were using the disk that I had as my primary disk, it should have
+complained because it was already mounted and busy. Therefore, it had
+to be that I confused disks and was using the old one from my laptop. I
+decided to just wipe it and install Windows there (it's spreading!!!!).
+When I finished installing it, I noticed my host system starting to
+behave strangely and I had a gut feeling that was quickly confirmed: I
+had installed Windows in my main disk, erasing whatever was there
+before. I still don't know why qemu didn't complain that the disk was 
+already in use.
 
 The first thing I did was quickly turning off the laptop and taking out
 the disk, just to make sure I don't ruin things for good. Then, I 
