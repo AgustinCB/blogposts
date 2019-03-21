@@ -26,10 +26,11 @@ The first thing I did was quickly turning off the laptop and taking out
 the disk, just to make sure I don't ruin things for good. Then, I 
 installed the old disk with my operative system in EXT4 and made a list
 of things that I could recover from the cloud and things that will need
-to be recovered from the disk. I had two items in the second one: Some 
-dirty changes made in a work repository that I never committed and the 
-image of a vm that I was using to study for my OSCP certification. I 
-had a version of that one in my old disk, but was month old.
+to be recovered from the (ruined) disk. I had two items in the second 
+one: Some dirty changes made in a work repository that I never committed
+and the image of a vm that I was using to study for my OSCP
+certification. I had a version of that one in my old disk, but was month
+outdated.
 
 Next thing I did was turn on the computer, install [TestDisk](https://www.cgsecurity.org/wiki/TestDisk)
 and run it on the ruined disk. Fortunately, the application was able to
@@ -43,6 +44,9 @@ and decided that's what I would try. It worked very nicely: I was able
 to recover most of the configuration I had changes in the last month, 
 the image of the virtual machine and some of the work. There were some
 stuff that I completely lost, but I kinda knew that was a possibility.
+
+Explaining what I did exactly is pointless, because the man pages are 
+excellent and I didn't need anything not mentioned there.
 
 After I recovered all the stuff, I decided to also create a backup 
 system using a raspberry pi, a usb disk and `btrfs send` and
